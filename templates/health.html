@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f4f8fc">
+    <title>Daily Hydration | WellSpring</title>
+
+    <style>
+        :root {
+            color-scheme: light;
+            --ink: #172b4d;
+            --muted: #64748b;
+            --blue: #1769e0;
+            --blue-dark: #1255bb;
+            --line: #e4ebf3;
+            --surface: #ffffff;
+            --background: #f4f8fc;
+            --shadow: 0 24px 70px rgba(32, 65, 110, 0.12);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            padding: 48px 20px;
+            display: grid;
+            place-items: center;
+            background:
+                radial-gradient(ellipse at 12% 8%, rgba(87, 174, 255, 0.13), transparent 34%),
+                radial-gradient(ellipse at 92% 90%, rgba(89, 217, 191, 0.12), transparent 32%),
+                var(--background);
+            color: var(--ink);
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+
+        .page {
+            width: min(100%, 620px);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 24px;
+            color: var(--ink);
+            font-size: 15px;
+            font-weight: 750;
+            letter-spacing: 0.02em;
+        }
+
+        .brand-mark {
+            width: 34px;
+            height: 34px;
+            display: grid;
+            place-items: center;
+            border-radius: 11px;
+            background: linear-gradient(145deg, #39a5ff, #1769e0);
+            color: white;
+            box-shadow: 0 6px 16px rgba(23, 105, 224, 0.25);
+        }
+
+        .health-card {
+            overflow: hidden;
+            border: 1px solid rgba(228, 235, 243, 0.9);
+            border-radius: 24px;
+            background: var(--surface);
+            box-shadow: var(--shadow);
+        }
+
+        .card-header {
+            padding: 38px 42px 30px;
+            background:
+                linear-gradient(135deg, rgba(239, 248, 255, 0.95), rgba(247, 252, 255, 0.8));
+            border-bottom: 1px solid #edf2f7;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin: 0 0 14px;
+            color: var(--blue);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .eyebrow::before {
+            width: 22px;
+            height: 2px;
+            border-radius: 2px;
+            background: currentColor;
+            content: "";
+        }
+
+        h1 {
+            margin: 0;
+            color: var(--ink);
+            font-size: clamp(29px, 6vw, 39px);
+            line-height: 1.15;
+            letter-spacing: -0.045em;
+        }
+
+        .intro {
+            max-width: 460px;
+            margin: 14px 0 0;
+            color: var(--muted);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .card-body {
+            padding: 32px 42px 36px;
+        }
+
+        .form-heading {
+            margin: 0 0 22px;
+            color: #314563;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .field {
+            margin-top: 21px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 9px;
+            color: #283b58;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .field-hint {
+            display: block;
+            margin-top: 7px;
+            color: #8290a4;
+            font-size: 12px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            min-height: 50px;
+            padding: 0 14px;
+            border: 1px solid #dce5ef;
+            border-radius: 10px;
+            outline: none;
+            background-color: #fff;
+            color: var(--ink);
+            font: inherit;
+            font-size: 14px;
+            transition: border-color 160ms ease, box-shadow 160ms ease;
+        }
+
+        input::placeholder {
+            color: #a0adbd;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: var(--blue);
+            box-shadow: 0 0 0 4px rgba(23, 105, 224, 0.12);
+        }
+
+        select {
+            cursor: pointer;
+        }
+
+        button {
+            width: 100%;
+            min-height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 28px;
+            padding: 0 18px;
+            border: 0;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #2384f5, #1769e0);
+            color: #fff;
+            font: inherit;
+            font-size: 15px;
+            font-weight: 750;
+            cursor: pointer;
+            box-shadow: 0 8px 18px rgba(23, 105, 224, 0.2);
+            transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+        }
+
+        button:hover {
+            transform: translateY(-1px);
+            background: linear-gradient(135deg, #1877e8, var(--blue-dark));
+            box-shadow: 0 11px 22px rgba(23, 105, 224, 0.26);
+        }
+
+        button:focus-visible,
+        .back-link:focus-visible {
+            outline: 3px solid rgba(23, 105, 224, 0.35);
+            outline-offset: 3px;
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .result-box {
+            margin-top: 26px;
+            padding: 21px 22px;
+            border: 1px solid #cceee5;
+            border-radius: 13px;
+            background: linear-gradient(135deg, #f0fbf8, #f6fcff);
+        }
+
+        .result-label {
+            margin: 0 0 7px;
+            color: #16826b;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0.09em;
+            text-transform: uppercase;
+        }
+
+        .result-box h2 {
+            margin: 0;
+            color: #153d50;
+            font-size: 25px;
+            letter-spacing: -0.03em;
+        }
+
+        .result-box p:last-child {
+            margin: 10px 0 0;
+            color: #526a78;
+            font-size: 14px;
+            line-height: 1.65;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 24px;
+            color: var(--blue);
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            color: var(--blue-dark);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        .footer-note {
+            margin: 21px 0 0;
+            color: #8a97a8;
+            font-size: 11px;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        @media (max-width: 520px) {
+            body {
+                padding: 28px 14px;
+            }
+
+            .brand {
+                margin-bottom: 18px;
+            }
+
+            .health-card {
+                border-radius: 18px;
+            }
+
+            .card-header {
+                padding: 30px 24px 25px;
+            }
+
+            .card-body {
+                padding: 26px 24px 29px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="page">
+        <div class="brand" aria-label="WellSpring">
+            <span class="brand-mark" aria-hidden="true">✦</span>
+            <span>WellSpring</span>
+        </div>
+
+        <section class="health-card" aria-labelledby="page-title">
+            <header class="card-header">
+                <p class="eyebrow">Your daily wellness check-in</p>
+                <h1 id="page-title">Make hydration a habit.</h1>
+                <p class="intro">
+                    Get a personalized estimate for your daily water intake and a simple tip
+                    to support your wellness routine.
+                </p>
+            </header>
+
+            <div class="card-body">
+                <p class="form-heading">Tell us a little about your day</p>
+
+                <form method="POST" action="/health">
+                    <div class="field">
+                        <label for="weight">Your weight</label>
+                        <input
+                            type="number"
+                            id="weight"
+                            name="weight"
+                            step="0.1"
+                            min="1"
+                            max="500"
+                            required
+                            placeholder="For example, 55"
+                            aria-describedby="weight-hint"
+                        >
+                        <span class="field-hint" id="weight-hint">Enter your weight in kilograms.</span>
+                    </div>
+
+                    <div class="field">
+                        <label for="activity">Daily activity level</label>
+                        <select id="activity" name="activity">
+                            <option value="low">Low — mostly sitting or studying</option>
+                            <option value="moderate">Moderate — walking or light sports</option>
+                            <option value="high">High — intense sports or daily workouts</option>
+                        </select>
+                    </div>
+
+                    <button type="submit">
+                        Calculate my goal
+                        <span aria-hidden="true">→</span>
+                    </button>
+                </form>
+
+                {% if water_goal is not none %}
+                <section class="result-box" aria-live="polite" aria-label="Your hydration estimate">
+                    <p class="result-label">Your estimated daily target</p>
+                    <h2>{{ water_goal }} liters</h2>
+                    <p><strong>Wellness tip:</strong> {{ tip }}</p>
+                </section>
+                {% endif %}
+
+                <a href="/" class="back-link">
+                    <span aria-hidden="true">←</span> Back to home
+                </a>
+
+                <p class="footer-note">
+                    This is a general estimate, not medical advice. Individual hydration needs vary.
+                </p>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
