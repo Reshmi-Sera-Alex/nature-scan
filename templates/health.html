@@ -202,7 +202,8 @@
         }
 
         button:focus-visible,
-        .back-link:focus-visible {
+        .back-link:focus-visible,
+        .feature-nav a:focus-visible {
             outline: 3px solid rgba(23, 105, 224, 0.35);
             outline-offset: 3px;
         }
@@ -257,6 +258,29 @@
             color: var(--blue-dark);
             text-decoration: underline;
             text-underline-offset: 3px;
+        }
+
+        .feature-nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 24px 0 0;
+        }
+
+        .feature-nav a {
+            padding: 9px 12px;
+            border: 1px solid #dce5ef;
+            border-radius: 999px;
+            color: var(--blue);
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .feature-nav a:hover {
+            background: #eff7ff;
+            color: var(--blue-dark);
         }
 
         .footer-note {
@@ -363,6 +387,11 @@
                 <a href="/" class="back-link">
                     <span aria-hidden="true">←</span> Back to home
                 </a>
+
+                <nav class="feature-nav" aria-label="Other wellness features">
+                    <a href="/mood">Mood check-in</a>
+                    <a href="/symptoms">Symptom checker</a>
+                </nav>
 
                 <p class="footer-note">
                     This is a general estimate, not medical advice. Individual hydration needs vary.
